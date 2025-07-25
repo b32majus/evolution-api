@@ -1,5 +1,4 @@
 import { cpSync } from 'node:fs';
-
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
@@ -10,6 +9,9 @@ export default defineConfig({
   clean: true,
   minify: true,
   format: ['cjs', 'esm'],
+  external: [
+    'src/api/integrations/chatbot/chatwoot/services/chatwoot.service.ts'
+  ],
   onSuccess: async () => {
     cpSync('src/utils/translations', 'dist/translations', { recursive: true });
   },
